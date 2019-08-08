@@ -79,7 +79,7 @@ router.get("/:id", function (req, res, next) {
       res.render('id', {
         title: 'Product',
         nome: productos[0].nombre,
-        url: '/' + req.params.id  + '/delete',
+        url: '/' + req.params.id + '/delete',
         url2: '/' + req.params.id + '/edit'
       })
     });
@@ -109,7 +109,7 @@ router.get('/:id/delete', function (req, res, next) {
 
 router.get('/:id/edit', function (req, res, next) {
   const id = req.params.id;
-  const editar = req.query.editar;  
+  const editar = req.query.editar;
   productos.update({
       nombre: editar
     }, {

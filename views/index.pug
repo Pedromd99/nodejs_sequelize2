@@ -3,9 +3,6 @@ extends layout
 block content
   h1= title
   p Welcome to #{title} 
-  //- pre #{nome[0].nombre}
-  
-  //- localStorage.setItem('products', JSON.stringify(nome));
 
   - for (var i = 0; i < nome.length; i++)
     form(action="/" + nome[i].id)
