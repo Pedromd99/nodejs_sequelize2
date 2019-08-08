@@ -8,7 +8,7 @@ block content
   //- localStorage.setItem('products', JSON.stringify(nome));
 
   - for (var i = 0; i < nome.length; i++)
-    form(action="/" + nome[i].id + '/' + nome[i].nombre)
+    form(action="/" + nome[i].id)
       li #{nome[i].nombre} 
       ul
         button.btn.btn-primary(type='submit') editar o borrar

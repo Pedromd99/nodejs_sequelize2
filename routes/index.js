@@ -66,7 +66,7 @@ router.post('/new', function (req, res, next) {
 
 //get 1
 
-router.get("/:id/:nombre", function (req, res, next) {
+router.get("/:id", function (req, res, next) {
   const id = req.params.id
   productos.findAll({
       limit: 1,
@@ -78,9 +78,9 @@ router.get("/:id/:nombre", function (req, res, next) {
       res.cookie('nombre', productos[0].nombre)
       res.render('id', {
         title: 'Product',
-        nome: req.cookies.nombre,
-        url: '/' + req.params.id + '/' + req.params.nombre + '/delete',
-        url2: '/' + req.params.id + '/' + req.params.nombre + '/edit'
+        nome: productos[0].nombre,
+        url: '/' + req.params.id  + '/delete',
+        url2: '/' + req.params.id + '/edit'
       })
     });
 });
@@ -88,7 +88,7 @@ router.get("/:id/:nombre", function (req, res, next) {
 
 //delete
 
-router.get('/:id/:nombre/delete', function (req, res, next) {
+router.get('/:id/delete', function (req, res, next) {
   const id = req.params.id;
   productos.destroy({
       limit: 1,
@@ -107,9 +107,9 @@ router.get('/:id/:nombre/delete', function (req, res, next) {
 
 //editar
 
-router.get('/:id/:nombre/edit', function (req, res, next) {
+router.get('/:id/edit', function (req, res, next) {
   const id = req.params.id;
-  const editar = req.query.editar;
+  const editar = req.query.editar;  
   productos.update({
       nombre: editar
     }, {
@@ -117,9 +117,8 @@ router.get('/:id/:nombre/edit', function (req, res, next) {
         id: id,
       }
     })
-
     .then((product) => {
-      res.redirect('/' + req.params.id + '/' + req.params.nombre);
+      res.redirect('/' + req.params.id);
     })
 })
 
