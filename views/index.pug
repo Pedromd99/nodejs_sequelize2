@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title} 
+  //- pre #{nome[0].nombre}
+  
+  //- localStorage.setItem('products', JSON.stringify(nome));
+
+  - for (var i = 0; i < nome.length; i++)
+    form(action="/" + nome[i].id + '/' + nome[i].nombre)
+      li #{nome[i].nombre} 
+      ul
+        button.btn.btn-primary(type='submit') editar o borrar
+
+
+  h2 Nuevo
+  form(action="/new" method="POST")
+    input(type="text" name="nuevop" id="nombre" lavel="nuevop")
+    button(type='submit') Añadir
