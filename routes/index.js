@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const Sequelize = require('sequelize');
-var serveStatic = require('serve-static')
 var cookieParser = require('cookie-parser');
-var localStorage = require('localStorage')
 /* GET home page. */
 
 var sequelize = new Sequelize("nodemysql", 'root', '123456', {
@@ -31,6 +29,7 @@ const productos = sequelize.define('productos', {
 router.use(cookieParser());
 
 //get all
+
 router.get('/', function (req, res, next) {
   productos.findAll({
       attributes: ['id', 'nombre']
@@ -49,15 +48,13 @@ router.get('/', function (req, res, next) {
 });
 
 //create
-router.post('/new', function (req, res, next) {
-  console.log(req);
 
+router.post('/new', function (req, res, next) {
   const {
     nuevop
   } = req.body;
   productos.create({
       nombre: nuevop
-
     })
     .then(productos => {
       res.redirect('/');
@@ -75,7 +72,6 @@ router.get("/:id", function (req, res, next) {
       },
     })
     .then(function (productos) {
-      res.cookie('nombre', productos[0].nombre)
       res.render('id', {
         title: 'Product',
         nome: productos[0].nombre,
@@ -84,7 +80,6 @@ router.get("/:id", function (req, res, next) {
       })
     });
 });
-
 
 //delete
 
@@ -96,14 +91,10 @@ router.get('/:id/delete', function (req, res, next) {
         id: id
       },
     })
-    .then((producto) => {
-      //return producto.destroy( { force: true } );
-    })
     .then(() => {
       res.redirect('/')
     })
 });
-
 
 //editar
 
@@ -121,6 +112,5 @@ router.get('/:id/edit', function (req, res, next) {
       res.redirect('/' + req.params.id);
     })
 })
-
 
 module.exports = router;
