@@ -1,17 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} 
+  div(class="container")
+    div(class="row")
+    h1= title
+    p Welcome to #{title} 
+    - for (var i = 0; i < nome.length; i++)
+      div(class="col-4")
+        form(action="/" + nome[i].id)
+          li #{nome[i].nombre}  
+            ul
+             button.btn.btn-secondary.btn-sm(type='submit') Editar o Borrar
 
-  - for (var i = 0; i < nome.length; i++)
-    form(action="/" + nome[i].id)
-      li #{nome[i].nombre} 
-      ul
-         button.btn.btn-primary(type='submit') editar o borrar
-
-
-  h2 Nuevo
-  form(action="/new" method="POST")
-    input(type="text" name="nuevop" id="nombre" lavel="nuevop")
-    button(type='submit') Añadir
+    h2 Nuevo
+    form(action="/new" method="POST")
+      input(type="text" name="nuevop" id="nombre" lavel="nuevop")
+      button.btn.btn-secondary.btn-sm(type='submit') Añadir

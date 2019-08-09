@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.4",
     "cookies": "^0.7.3",
     "debug": "~2.6.9",

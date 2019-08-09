@@ -1,13 +1,17 @@
 extends layout
 
 block content
+  div(class="container")
     h1= title
     form(action= url method="DELETE")
         li #{ nome }
-           button.btn.btn-primary(type='submit') eliminar
+           ul
+            button.btn.btn-secondary.btn-sm(type='submit') eliminar
     h2 Editar
-        form(action= url2 method="PUT")
-            input(type="text" name='editar' id='nombre' lavel='editar')
-            button(type='submit') Editar
+    form(action= url2 method="PUT")
+        input(type="text" class='form' name='editar' id='nombre' lavel='editar')
+        button.btn.btn-secondary.btn-sm(type='submit') Editar
+    
+    
     form(action="/" method="method")
-        button.btn.btn-primary(atype='submit') volver
+        button.btn.btn-secondary.btn-sm(atype='submit') volver

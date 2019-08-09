@@ -101,6 +101,8 @@ router.get('/:id/delete', function (req, res, next) {
 router.get('/:id/edit', function (req, res, next) {
   const id = req.params.id;
   const editar = req.query.editar;
+  console.log(editar);
+  
   productos.update({
       nombre: editar
     }, {
