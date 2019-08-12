@@ -31,14 +31,12 @@ router.use(cookieParser());
 //get all
 
 router.get('/', function (req, res, next) {
-  productos.findAll({
-      attributes: ['id', 'nombre']
-    })
+  productos.findAll()
     .then(productos => {
       for (var i = 0; i < productos.length; i++)
         console.log(productos[i].nombre);
       res.render('index', {
-        title: 'List of products',
+        title: 'Lista de Productos',
         nome: productos,
       });
     })
@@ -50,9 +48,7 @@ router.get('/', function (req, res, next) {
 //create
 
 router.post('/new', function (req, res, next) {
-  const {
-    nuevop
-  } = req.body;
+  const { nuevop } = req.body;
   productos.create({
       nombre: nuevop
     })
@@ -62,9 +58,9 @@ router.post('/new', function (req, res, next) {
 })
 
 //get 1
-
 router.get("/:id", function (req, res, next) {
   const id = req.params.id
+    
   productos.findAll({
       limit: 1,
       where: {
@@ -73,7 +69,7 @@ router.get("/:id", function (req, res, next) {
     })
     .then(function (productos) {
       res.render('id', {
-        title: 'Product',
+        title: 'Productos',
         nome: productos[0].nombre,
         url: '/' + req.params.id + '/delete',
         url2: '/' + req.params.id + '/edit'
@@ -101,8 +97,7 @@ router.get('/:id/delete', function (req, res, next) {
 router.get('/:id/edit', function (req, res, next) {
   const id = req.params.id;
   const editar = req.query.editar;
-  console.log(editar);
-  
+
   productos.update({
       nombre: editar
     }, {
